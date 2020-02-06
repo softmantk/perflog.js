@@ -1,5 +1,5 @@
 const {performance} = require('perf_hooks');
-module.exports = (mark) => {
+function perf (mark) {
 
     perf.obj = perf.obj || {};
     perf._summary = perf._summary || {};
@@ -14,4 +14,5 @@ module.exports = (mark) => {
     perf._summary[mark] = timeTaken;
     delete perf.obj[mark];
     return timeTaken;
-};
+}
+module.exports = perf;
