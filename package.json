@@ -1,0 +1,25 @@
+{
+  "name": "perflog",
+  "version": "1.0.0",
+  "description": "Simple Performance logger for js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/softmantk/perflog.js.git"
+  },
+  "keywords": [
+    "log",
+    "perf-log",
+    "perflog",
+    "logger"
+  ],
+  "author": "Softmantk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/softmantk/perflog.js/issues"
+  },
+  "homepage": "https://github.com/softmantk/perflog.js#readme"
+}
