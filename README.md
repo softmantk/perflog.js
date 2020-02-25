@@ -16,7 +16,7 @@ A simple performance logger. No external library. Not tested in production. It c
 Print log in the console: 
 ```js
     // initialize 
-    const perf = require("perf");
+    const perf = require("perf")();
     // mark the point
     perf("apiCall");
 
