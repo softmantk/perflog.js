@@ -1,7 +1,7 @@
 const {performance} = require('perf_hooks');
 const {PERF_LOG} = process.env;
 
-function perf({enabled = true}) {
+function perf({enabled = true}={}) {
     const fn = function (mark) {
         if ([undefined, null, false, "false"].includes(PERF_LOG) || enabled) {
             fn.obj = fn.obj || {};
