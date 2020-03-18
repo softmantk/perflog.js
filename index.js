@@ -1,6 +1,11 @@
 const {performance} = require('perf_hooks');
-function perf () {
-    const fn =  function(mark){
+const {PERF_LOG} = process.env;
+
+function perf() {
+    const fn = function (mark) {
+        if ([undefined, null, false, "false"].includes(PERF_LOG)) {
+            return;
+        }
         fn.obj = fn.obj || {};
         fn._summary = fn._summary || {};
         const time = performance.now();
@@ -14,7 +19,8 @@ function perf () {
         fn._summary[mark] = timeTaken;
         delete fn.obj[mark];
         return timeTaken;
-    }
+    };
     return fn;
 }
+
 module.exports = perf;
