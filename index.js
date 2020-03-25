@@ -1,7 +1,13 @@
 const {performance} = require('perf_hooks');
 const {PERF_LOG} = process.env;
 
-function perf({enabled = true}={}) {
+function perf({
+                  enabled = true,
+                  inLineLog = true,
+                  round = 2
+              } = {}) {
+    if (typeof round !== 'number')
+        throw new Error("round must be number type");
     const fn = function (mark) {
         if ([undefined, null, false, "false"].includes(PERF_LOG) || enabled) {
             fn.obj = fn.obj || {};
@@ -11,9 +17,9 @@ function perf({enabled = true}={}) {
                 fn.obj[mark] = time;
                 return 0;
             }
-
-            const timeTaken = (time - fn.obj[mark]).toFixed(2);
-            console.log(`PERF:${mark}:`, timeTaken);
+            const timeTaken = (time - fn.obj[mark]).toFixed(round);
+            if (inLineLog)
+                console.log(`PERF:${mark}:`, timeTaken);
             fn._summary[mark] = timeTaken;
             delete fn.obj[mark];
             return timeTaken;
