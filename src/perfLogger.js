@@ -1,5 +1,6 @@
 const {performance} = require('perf_hooks');
 const {PERF_LOG = true} = process.env;
+
 function perf({
                   enabled = true,
                   inLineLog = true,
@@ -24,9 +25,10 @@ function perf({
             fn.obj[mark] = time;
             return 0;
         }
-        const timeTaken = (time - fn.obj[mark]).toFixed(round);
-        if (inLineLog)
+        const timeTaken = +(time - fn.obj[mark]).toFixed(round);
+        if (inLineLog) {
             console.log(`${prefix}${mark}: `, timeTaken);
+        }
         fn._summary[mark] = timeTaken;
         delete fn.obj[mark];
         return timeTaken;
