@@ -28,7 +28,7 @@ Print log in the console:
     perf("apiCall");
 
 ```
-If you dont wish to log into the consol,
+If you dont wish to log into the console,
 
 ```js
      // initialize 
