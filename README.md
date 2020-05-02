@@ -94,5 +94,5 @@ Output:
 ## Environment configuration
 
 ####PERF_LOG :
-If PERF_LOG is set to false, all the inline logging in the  will be disabled 
+If PERF_LOG is set to false, all the logging  will be disabled. No in line logging and no logging report in perf._summary object. 
 
