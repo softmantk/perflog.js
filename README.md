@@ -28,11 +28,26 @@ Print log in the console:
     perf("apiCall");
 
 ```
+If you dont wish to log into the consol,
 
-Output
-```text
-    PERF:apiCall: 1160.50
+```js
+     // initialize 
+        const perf = require("perflog")({inLineLog:false});
+       
+        // mark the point
+        perf("apiCall");
+        const response = await axios.get();
+        // mark again.
+        perf("apiCall");
 ```
+Now console logs wont be there. To get the performance details. The way is using perf._summary 
+```js
+    console.log(perf._summary);
+```
+
+
+
+
 To get all the performance logs :
 
 ```js
@@ -42,7 +57,7 @@ To get all the performance logs :
     perf("apiCall");
     
     perf("db");
-    await db.create(data)
+    await db.create(data);
     perf("db");
 
     const summary = perf._summary;
@@ -59,15 +74,22 @@ Output:
 
 ##Options: 
  ```js
-    const perf = require("perflog")({enabled:true,inLineLog:true, round:2});
+    const perf = require("perflog")({
+        enabled:true,
+        inLineLog:true, 
+        round:2,
+        logPrefix:"PERF:"
+    });
 ```
 
 
 | Options  | description |
 | ------------- | ------------- |
-| enabled  | To enable/disable log. Default: true  |
-| inLineLog  | DEFAULT:true. if enabled, on the 2nd mark, it will console log the performance. So that, you only get performnace details from perf._summary   |
+| enabled  | To enable/disable library logging. If set to true, logging will be disabled. Default: true  |
+| inLineLog  | DEFAULT:true. if enabled, on the 2nd mark, it will console log the performance.    |
 | round| DEFAULT:2, round off value. 
+| logPrefix|  DEFAULT: 'PERF:' | 
+
 
 ## Environment configuration
 
