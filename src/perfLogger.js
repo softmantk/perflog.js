@@ -1,13 +1,13 @@
 const {performance} = require('perf_hooks');
-const {PERF_LOG = true} = process.env;
 
 function perf({
                   enabled = true,
                   inLineLog = true,
                   round = 2,
                   forced = false,
-                  prefix = "PERF:"
+                  logPrefix = "PERF:"
               } = {}) {
+    const {PERF_LOG = true} = process.env;
     if (typeof round !== 'number')
         throw new Error("round must be number type");
     const fn = function (mark) {
@@ -27,7 +27,7 @@ function perf({
         }
         const timeTaken = +(time - fn.obj[mark]).toFixed(round);
         if (inLineLog) {
-            console.log(`${prefix}${mark}: `, timeTaken);
+            console.log(`${logPrefix}${mark}: `, timeTaken);
         }
         fn._summary[mark] = timeTaken;
         delete fn.obj[mark];
