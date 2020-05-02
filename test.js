@@ -62,19 +62,28 @@ describe("debug", () => {
             perf2("start");
             assert.ok(!perf2._summary);
         });
+        it("should be disabled when set environment variable", async () => {
+
+            const perf1 = perfGen();
+            perf1("test");
+            await delayFn(() => 0, 10);
+            perf1("test");
+            assert.ok(perf1._summary);
+
+            process.env.PERF_LOG = true;
+            const perf2 = perfGen();
+            perf2("test");
+            await delayFn(() => 0, 10);
+            perf2("test");
+            assert.ok(perf2._summary);
+
+            process.env.PERF_LOG = false;
+            const perf3 = perfGen();
+            perf3("test");
+            await delayFn(() => 0, 10);
+            perf3("test");
+            assert.ok(!perf3._summary);
+
+        });
     });
-    
-    // describe("In line logging", () => {
-    //     it("should write in terminal if I turned inLineLog on", async () => {
-    //         //todo incomplete
-    //         const perf = perfGen();
-    //         perf("start");
-    //         await delayFn(() => 0, 20);
-    //         perf("start");
-    //         const unhook = setupLogTest((string, encoding, fd)=>{
-    //             assert(string, "sss")
-    //         });
-    //         unhook()
-    //     });
-    // });
 });
